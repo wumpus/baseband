@@ -203,7 +203,7 @@ class VDIFHeader(VLBIHeaderBase, metaclass=VDIFHeaderMeta):
         vdif_version : 1
         thread_id : 0
         frame_nr : 0
-        sync_pattern : 0xACABFEED for EDV 1 and 3, 0xa5ae5 for EDV 2
+        sync_pattern : 0xACABFEED for EDV 1 and 3, 0xa5ae5 for EDV 2 ALMA PIC
 
         Values set by other keyword arguments (if present):
 
@@ -766,9 +766,11 @@ class VDIFHeader2(VDIFBaseHeader, VDIFNoSampleRateHeader):
          ('pol', (4, 0, 1)),
          ('BL_quadrant', (4, 1, 2)),
          ('BL_correlator', (4, 3, 1)),
-         ('sync_pattern', (4, 4, 20, 0xa5ae5)),
-         ('PIC_status', (5, 0, 32)),
-         ('PSN', (6, 0, 64))))
+         #('sync_pattern', (4, 4, 20, 0xa5ae5)),  # a5ae5 is ALMA PIC
+         # non-ALMA mark6 stations put different values here
+         # https://vlbi.org/wp-content/uploads/2019/03/alma-vdif-edv.pdf
+         ('PIC_status', (5, 0, 32)),  # non-ALMA is "location of data marks"
+         ('PSN', (6, 0, 64))))  # sequence number prefixed to VTP UDP packets
 
     _invariants = (VDIFBaseHeader._invariants
                    | {'edv', 'sync_pattern'})
