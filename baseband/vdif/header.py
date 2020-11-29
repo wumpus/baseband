@@ -573,9 +573,9 @@ class VDIFBaseHeader(VDIFHeader):
         assert len(self.words) == 8
         assert self['frame_length'] >= 4
         # _sync_pattern is added by VDIFHeaderMeta.
-        if 'sync_pattern' in self.keys():
+        if 'sync_pattern' in self.keys() and self._sync_pattern is not None:
             assert self['sync_pattern'] == self._sync_pattern, \
-                'sync_pattern {:x} should be {:x}'.format(self['sync_pattern'], self._sync_pattern)
+                'sync_pattern {!x} should be {!x}'.format(self['sync_pattern'], self._sync_pattern)
 
 
 class VDIFHeader0(VDIFBaseHeader, VDIFNoSampleRateHeader):
@@ -768,7 +768,7 @@ class VDIFHeader2(VDIFBaseHeader, VDIFNoSampleRateHeader):
          ('BL_correlator', (4, 3, 1)),
          #('sync_pattern', (4, 4, 20, 0xa5ae5)),  # a5ae5 is ALMA PIC
          # non-ALMA mark6 stations put different values here
-         ('sync_pattern', (4, 4, 20)),
+         ('sync_pattern', (4, 4, 20, None)),
          ('PIC_status', (5, 0, 32)),  # non-ALMA is "location of data marks"
          ('PSN', (6, 0, 64))))  # sequence number prefixed to VTP UDP packets
 
