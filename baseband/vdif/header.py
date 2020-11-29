@@ -203,7 +203,7 @@ class VDIFHeader(VLBIHeaderBase, metaclass=VDIFHeaderMeta):
         vdif_version : 1
         thread_id : 0
         frame_nr : 0
-        sync_pattern : 0xACABFEED for EDV 1 and 3, 0xa5ea5 for EDV 2
+        sync_pattern : 0xACABFEED for EDV 1 and 3, 0xa5ae5 for EDV 2
 
         Values set by other keyword arguments (if present):
 
@@ -766,7 +766,7 @@ class VDIFHeader2(VDIFBaseHeader, VDIFNoSampleRateHeader):
          ('pol', (4, 0, 1)),
          ('BL_quadrant', (4, 1, 2)),
          ('BL_correlator', (4, 3, 1)),
-         ('sync_pattern', (4, 4, 20, 0xa5ea5)),
+         ('sync_pattern', (4, 4, 20, 0xa5ae5)),
          ('PIC_status', (5, 0, 32)),
          ('PSN', (6, 0, 64))))
 
