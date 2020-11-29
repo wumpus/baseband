@@ -781,7 +781,8 @@ class VDIFHeader2(VDIFBaseHeader, VDIFNoSampleRateHeader):
 
     def verify(self):  # pragma: no cover
         super().verify()
-        assert self['frame_length'] == 629 or self['frame_length'] == 1004
+        # EHT 2018: ALMA is 1004, others are 1024
+        assert self['frame_length'] in {629, 1004, 1024}
         assert self.bps == 2 and not self['complex_data']
 
 
