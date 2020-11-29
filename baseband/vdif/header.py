@@ -768,7 +768,7 @@ class VDIFHeader2(VDIFBaseHeader, VDIFNoSampleRateHeader):
          ('BL_correlator', (4, 3, 1)),
          #('sync_pattern', (4, 4, 20, 0xa5ae5)),  # a5ae5 is ALMA PIC
          # non-ALMA mark6 stations put different values here
-         # https://vlbi.org/wp-content/uploads/2019/03/alma-vdif-edv.pdf
+         ('sync_pattern', (4, 4, 20)),
          ('PIC_status', (5, 0, 32)),  # non-ALMA is "location of data marks"
          ('PSN', (6, 0, 64))))  # sequence number prefixed to VTP UDP packets
 
