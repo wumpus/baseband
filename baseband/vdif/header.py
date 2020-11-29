@@ -575,7 +575,7 @@ class VDIFBaseHeader(VDIFHeader):
         # _sync_pattern is added by VDIFHeaderMeta.
         if 'sync_pattern' in self.keys():
             assert self['sync_pattern'] == self._sync_pattern, \
-                'sync_pattern {} should be {}'.format(self['sync_pattern'], self._sync_pattern)
+                'sync_pattern {:x} should be {:x}'.format(self['sync_pattern'], self._sync_pattern)
 
 
 class VDIFHeader0(VDIFBaseHeader, VDIFNoSampleRateHeader):
